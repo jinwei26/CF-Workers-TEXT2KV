@@ -1,16 +1,20 @@
 // 定义一个名为 mytoken 的变量，并将 'passwd' 作为默认的读写权限
 let mytoken= 'passwd';
 
+// KV
+// TOKEN
+
+
 export default {
 	async fetch (request, env) {
-		// 如果环境变量中有 TOKEN，则将其赋值给 mytoken，否则保持默认值
-		mytoken = env.TOKEN || mytoken;
+		// 如果环境变量中设置有  TEXTTOKEN，则将其赋值给 mytoken，否则保持默认值
+		mytoken = env.TEXTTOKEN || mytoken;
 
 		let KV;
 		// 检查 KV (键值存储) 是否已经被设置
-		if (env.KV) {
+		if (env.kv_text) {
 			// 将 env.KV 赋值一个名为 KV 的常量
-			KV =  env.KV;
+			KV =  env.kv_text;
 		} else {
 			//throw new Error('KV 命名空间未绑定');
 			return new Response('KV 命名空间未绑定', {
